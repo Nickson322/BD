@@ -1,0 +1,26 @@
+/* body{
+    background: url("/css/authorization/img/bg.png");
+    background-size: cover;
+} */
+
+.tables{
+    font: 30px Arial, Tahoma, sans-serif;
+}
+
+ul{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+li{
+    list-style-type: none;
+}
+
+a{
+    color: rgb(43, 163, 61);
+    text-decoration: none;
+}
+
+.ref:hover{
+    border-bottom: solid 1px black;
+}

@@ -55,6 +55,9 @@ if (isset($_GET['del_id'])){
 <html>
 <head>
     <title> Таблица "Поездки" </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
     <style>
         body{
             background: url("/css/authorization/img/bg.png");
@@ -85,11 +88,16 @@ if (isset($_GET['del_id'])){
     </style>
 </head>
 <body>
-    <ul>
-        <li> <a href="index.php?sort=fio-asc"> ФИО от А до Я</a> </li>
-        <li> <a href="index.php?sort=fio-desc"> ФИО от Я до А</a> </li>
-        <li> <a href="index.php?sort=default"> ФИО по умолчанию</a> </li>
-    </ul>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Сортировать
+        </button>
+        <ul class="dropdown-menu">
+            <li> <a class="dropdown-item" href="index.php?sort=fio-asc"> ФИО от А до Я</a> </li>
+            <li> <a class="dropdown-item" href="index.php?sort=fio-desc"> ФИО от Я до А</a> </li>
+            <li> <a class="dropdown-item" href="index.php?sort=default"> ФИО по умолчанию</a> </li>
+        </ul>
+    </div>  
 
     <h2> Таблица "Поездки" </h2>
     <table>
@@ -101,6 +109,7 @@ if (isset($_GET['del_id'])){
         <td> Пункт отбытия</td>
         <td> Дата поездки</td>
         <td> Длительность поездки </td>
+        <td> Цена </td>
     </tr>
 
     <?php
@@ -118,6 +127,7 @@ if (isset($_GET['del_id'])){
             "<td> {$row_trips['depart_point']}</td>".
             "<td> {$row_trips['trip_data']}</td>".
             "<td> {$row_trips['duration']}</td>".
+            "<td> {$row_trips['cost']}</td>".
             "<td><a href='?del_id={$row_trips['id_trip']}'>Удалить</a></td>" .
             "<td><a href='update.php?red_id={$row_trips['id_trip']}'>Изменить</a></td>" .
             '</tr>';
@@ -125,13 +135,19 @@ if (isset($_GET['del_id'])){
     ?>
     </table>
 
-    <?php 
-    for ($i = 1; $i <= $str_pag; $i++){
-        echo "<a href=index.php?page=".$i."> Страница " .$i."</a>";
-    }
-    ?>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <?php 
+            for ($i = 1; $i <= $str_pag; $i++){
+                echo "<li class='page-item'><a class='page-link' href=index.php?page=".$i.">" .$i."</a></li>";
+            }
+            ?>
+        </ul>
+    </nav>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 </body>
 </html>

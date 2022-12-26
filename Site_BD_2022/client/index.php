@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/client/style.css">
     <title>Главная</title>
 </head>
@@ -16,11 +18,38 @@
     </ul>
 
     <form method="post">
-        <div class="find">
-            <p>Откуда: </p><input type="text" name="depart"
+        <div class="ramka">
+        <!-- <div class="find"> -->
+            <div class="dep">
+                <p>Пункт отправления: </p><input type="text" name="depart"
+                value="<?=$_POST['depart']; ?>">
+            </div>
+            <div>
+                <p>Пункт прибытия: </p><input type="text" name="dest"
+                value="<?=$_POST['dest']; ?>">
+            </div>
+            <div class="data">
+                <input type="date" name="dat"
+                value="<?=$_POST['dat']; ?>">
+            </div>
+        <!-- </div> -->
+
+            <div class="col-md-3 col-xs-12 big-search">
+                <button class="btn btn-primary" type="submit" name="submit" value="Найти"> Найти</button>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <!-- <div class="find">
+            <p>Пункт отправления: </p><input type="text" name="depart"
             value="<?=$_POST['depart']; ?>">
     
-            <p>Куда: </p><input type="text" name="dest"
+            <p>Пункт прибытия: </p><input type="text" name="dest"
             value="<?=$_POST['dest']; ?>">
 
             <div class="data">
@@ -29,7 +58,7 @@
 
                 <input class="btn" type="submit" name="submit" value="Найти">
             </div>
-        </div>
+        </div> -->
     </form>
 
 </body>

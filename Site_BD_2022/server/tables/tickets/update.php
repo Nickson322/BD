@@ -5,16 +5,24 @@ if (isset($_POST['id_ticket'])) {
     //Если это запрос на обновление, то обновляем
     if (isset($_GET['red_id'])) {
 
-        $sql_update = 
-        "UPDATE tickets
-        INNER JOIN trips 
-            ON tickets.id_trip = trips.id_trip
-        INNER JOIN clients 
-            ON id_ticket = clients.id_client
-        SET id_ticket = '{$_POST['id_ticket']}', trips.destination = '{$_POST['destination']}',
-            clients.FIO_client = '{$_POST['FIO_client']}',
-            data_bought = '{$_POST['data_bought']}', cost = '{$_POST['cost']}'
-        WHERE id_ticket = {$_GET['red_id']}";
+        // $sql_update = 
+        // "UPDATE tickets
+        // INNER JOIN trips 
+        //     ON tickets.id_trip = trips.id_trip
+        // INNER JOIN clients 
+        //     ON tickets.id_ticket = clients.id_client
+        // SET id_ticket = '{$_POST['id_ticket']}', trips.destination = '{$_POST['destination']}',
+        //     trips.depart_point = '{$_POST['depart_point']}',
+        //     clients.FIO_client = '{$_POST['FIO_client']}',
+        //     tickets.passport_num = '{$_POST['passport_num']}', tickets.trip_data = '{$_POST['trip_data']}'
+        // WHERE id_ticket = {$_GET['red_id']}";
+
+    $sql_update = "UPDATE `tickets` SET `id_ticket`= '{$_POST['id_ticket']}',
+    `id_trip` = '{$_POST['id_trip']}',
+    `id_trip2`='{$_POST['id_trip2']}',
+    `id_client`='{$_POST['id_client']}',
+    `passport_num`='{$_POST['passport_num']}',
+    `trip_data`= '{$_POST['trip_data']}' WHERE id_ticket = '{$_GET['red_id']}'";
         
         $result_update = mysqli_query($link,$sql_update);
     }
@@ -30,11 +38,12 @@ if (isset($_GET['red_id'])) {
 // $sql_select = "SELECT id_ticket, FIO, starting_date, salary FROM tickets 
 // WHERE id_ticket = {$_GET['red_id']}";
 
-    $sql_select = "SELECT id_ticket, trips.destination, clients.FIO_client, data_bought, cost FROM tickets
+    $sql_sel = "SELECT id_ticket, trips.depart_point, trips.destination, clients.FIO_client, tickets.passport_num, tickets.trip_data 
+    FROM tickets 
     INNER JOIN trips ON tickets.id_trip = trips.id_trip
-    INNER JOIN clients ON id_ticket = clients.id_client WHERE id_ticket = {$_GET['red_id']}";
+    INNER JOIN clients ON tickets.id_client = clients.id_client WHERE id_ticket = '{$_GET['red_id']}'";
 
-$result_select = mysqli_query($link, $sql_select);
+$result_select = mysqli_query($link, $sql_sel);
 $row = mysqli_fetch_array($result_select);
 }
 ?>
@@ -82,24 +91,62 @@ $row = mysqli_fetch_array($result_select);
                     isset($_GET['red_id']) ? $row['id_ticket'] : ''; ?>"></td>
                 </tr>
                 <tr>
+                    <td>Пункт отправления</td>
+                    <td>
+                        <select name="id_trip">
+                            <?php
+                                $sql_select = "SELECT `id_trip`, `depart_point` FROM `trips`";
+                                $result_select = mysqli_query($link, $sql_select);
+
+                                while ($row = mysqli_fetch_array($result_select))
+                                {
+                                    echo "<option value ='".$row['id_trip']."'>".$row['depart_point']."</option>";
+                                }
+                            ?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
                     <td>Пункт прибытия</td>
-                    <td><input type="text" name="destination" value="<?=
-                    isset($_GET['red_id']) ? $row['destination'] : ''; ?>"></td>
+                    <td>
+                        <select name="id_trip2">
+                            <?php
+                                $sql_select = "SELECT `id_trip`, `destination` FROM `trips`";
+                                $result_select = mysqli_query($link, $sql_select);
+
+                                while ($row = mysqli_fetch_array($result_select))
+                                {
+                                    echo "<option value ='".$row['id_trip']."'>".$row['destination']."</option>";
+                                }
+                            ?>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>ФИО клиента</td>
-                    <td><input type="text" name="FIO_client" value="<?=
-                    isset($_GET['red_id']) ? $row['FIO_client'] : ''; ?>"></td>
+                    <td>
+                        <select name="id_client">
+                            <?php
+                                $sql_select = "SELECT `id_client`, `FIO_client` FROM `clients`";
+                                $result_select = mysqli_query($link, $sql_select);
+
+                                while ($row = mysqli_fetch_array($result_select))
+                                {
+                                    echo "<option value ='".$row['id_client']."'>".$row['FIO_client']."</option>";
+                                }
+                            ?>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Дата покупки билета</td>
-                    <td><input type="text" name="data_bought" value="<?=
-                    isset($_GET['red_id']) ? $row['data_bought'] : ''; ?>"></td>
+                    <td>Номер паспорта</td>
+                    <td><input type="text" name="passport_num" value="<?=
+                    isset($_GET['red_id']) ? $row['passport_num'] : ''; ?>"></td>
                 </tr>
                 <tr>
-                    <td>Цена билета</td>
-                    <td><input type="text" name="cost" value="<?=
-                    isset($_GET['red_id']) ? $row['cost'] : ''; ?>"></td>
+                    <td>Дата поездки</td>
+                    <td><input type="date" name="trip_data" value="<?=
+                    isset($_GET['red_id']) ? $row['trip_data'] : ''; ?>"></td>
                 </tr>
 
                 <tr>

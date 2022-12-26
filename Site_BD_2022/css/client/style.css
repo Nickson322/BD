@@ -94,23 +94,41 @@ body{
     left: 100%;
 }
 
-.find p{
-    margin: 0px;
-    padding-bottom: 10px;
+.ramka{
+    display: flex;
+    gap: 40px;
+    padding: 10px 0;
+    margin-top: 20px;
+    margin-left: 375px;
+    margin-right: 375px;
+    background-color: #337AB7;
+    border-radius: 10px;
+}
+
+form{
+    margin-top:100px;
+}
+
+.dep{
+    padding-left: 20px;
 }
 
 .find{
-    display: block;
-    margin-top: 40px;
-    gap: 100px;
+  display: inline;
 }
 
+.btn-primary{
+    background-color: orange;
+}
+
+
+
 .btn{
-    height: 20px;
+    margin-top: 35px;
 }
 
 .data{
-    margin-top: 29px;
+    margin-top: 40px;
 }
 
 table{
@@ -121,7 +139,10 @@ table{
     border: 2px solid black;
     padding: 10px;
     border-radius: 20px;
+    margin-top: 50px;
+    margin-left: 325px;
 }
+
 td{
     border-radius: 10px;
     background: #ece9e0;;

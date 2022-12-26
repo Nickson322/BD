@@ -7,7 +7,7 @@
     $pass = trim($_POST['pass']);
 
     if (!empty($login) && !empty($pass)){
-        $sql = "INSERT INTO users(log, pass) VALUES ('$login', '$pass')";
+        $sql = "INSERT INTO users(logg, pass) VALUES ('$login', '$pass')";
     }
 
     $result = mysqli_query($link, $sql);

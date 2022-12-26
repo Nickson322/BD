@@ -36,6 +36,8 @@ body{
     padding: 5px 20px 15px 20px;
     border: 1px solid lightgrey;
     border-radius: 3px;
+    margin-top: 20px;
+    margin-left: 620px;
   }
   
   input[type=text] {
@@ -87,3 +89,27 @@ body{
       margin-bottom: 20px;
     }
   }
+
+  table{
+    font-family: sans-serif;
+    border-collapse: separate;
+    border-spacing: 5px;
+    background: #8fb9d3;
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 50px;
+    margin-left: 375px;
+}
+
+td{
+    border-radius: 10px;
+    background: #ece9e0;;
+    padding: 10px;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    color: orange;
+}

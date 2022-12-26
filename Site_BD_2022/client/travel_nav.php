@@ -39,6 +39,7 @@
             padding: 10px;
             /* #ece9e0; */
             border-radius: 20px;
+           
         }
         td{
             border-radius: 10px;
@@ -51,34 +52,39 @@
         a:hover{
             color: orange;
         }
+
+        .nav{
+            margin-left: 600px;
+        }
     </style>
 </head>
 <body>
-    <h2> Направления поездок </h2>
-    <table>
-        <tr>
-            <td> Пункт прибытия </td>
-            <td> Пункт отбытия</td>
-        </tr>
+    <div class= "nav">
+        <h2> Направления поездок </h2>
+        <table>
+            <tr>
+                <td> Пункт прибытия </td>
+                <td> Пункт отбытия</td>
+            </tr>
 
-        <?php
-            // Запрос и вывод записей
-            $result = mysqli_query($link, "SELECT DISTINCT depart_point, destination 
-            FROM trips LIMIT $art, $kol");
-            
-            while ($row_trips = mysqli_fetch_array($result)) {
-                echo '<tr>' .
-                "<td> {$row_trips['destination']}</td>".
-                "<td> {$row_trips['depart_point']}</td>".
-                "<td> <a href='ticket_buy.php'>Купить билет</a></td>" .
-                '</tr>';
-            }
-        ?>
-    </table>
+            <?php
+                // Запрос и вывод записей
+                $result = mysqli_query($link, "SELECT DISTINCT depart_point, destination 
+                FROM trips LIMIT $art, $kol");
+                
+                while ($row_trips = mysqli_fetch_array($result)) {
+                    echo '<tr class="nav">' .
+                    "<td> {$row_trips['destination']}</td>".
+                    "<td> {$row_trips['depart_point']}</td>".
+                    '</tr>';
+                }
+            ?>
+        </table>
+    </div>
 
     <?php 
     for ($i = 1; $i <= $str_pag; $i++){
-        echo "<a href=travel_nav.php?page=".$i."> Страница " .$i."</a>";
+        echo "<a class='nav' href=travel_nav.php?page=".$i."> Страница " .$i."</a>";
     }
     ?>
 

@@ -24,11 +24,18 @@
 <html>
 <head>
     <title> Направления поездок</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
     <style>
         body{
             background: url("/css/authorization/img/bg.png");
             background-size: cover;
         }
+        h2{
+            margin-left: 20px;
+        }
+
         table{
             font-family: sans-serif;
             border-collapse: separate;
@@ -39,6 +46,7 @@
             padding: 10px;
             /* #ece9e0; */
             border-radius: 20px;
+            margin-left: 20px;
         }
         td{
             border-radius: 10px;
@@ -50,6 +58,9 @@
         }
         a:hover{
             color: orange;
+        }
+        .strr{
+            margin-left: 20px;
         }
     </style>
 </head>
@@ -70,17 +81,20 @@
                 echo '<tr>' .
                 "<td> {$row_trips['destination']}</td>".
                 "<td> {$row_trips['depart_point']}</td>".
-                "<td> <a href='authorization.php'>Купить билет</a></td>" .
                 '</tr>';
             }
         ?>
     </table>
 
-    <?php 
-    for ($i = 1; $i <= $str_pag; $i++){
-        echo "<a href=travel_nav.php?page=".$i."> Страница " .$i."</a>";
-    }
-    ?>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <?php 
+            for ($i = 1; $i <= $str_pag; $i++){
+                echo "<li class='page-item strr'><a class='page-link' href=index.php?page=".$i."> $i </a></li>";
+            }
+            ?>
+        </ul>
+    </nav>
 
 
 
